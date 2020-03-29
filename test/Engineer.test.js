@@ -29,8 +29,17 @@ test("getRole() should return \"Engineer\"", () => {
   
 });
 
+
+// Positive test getGithub method
 test("Can get GitHub username via getGithub()", () => {
+
+  // create test parameter
   const testValue = "GitHubUser";
+
+  // create new Engineer class
   const e = new Engineer("Foo", 1, "test@test.com", testValue);
+
+  // expect getGithub method to return same value as parameter passed to constructor
   expect(e.getGithub()).toBe(testValue);
+  
 });

@@ -33,6 +33,17 @@ function init(){
 // TODO: inquireManager function
 function inquireManger(){
 
+    // create blank manager object
+
+    // inquirer call
+
+        // prompt for manager
+
+        // then callback promise function
+
+            // construct manager object
+
+    // return manager object
     return;
 }
 

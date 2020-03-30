@@ -10,7 +10,27 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 ​
 const render = require("./lib/htmlRenderer");
 ​
-​
+// TODO: init function
+function init(){
+
+    // create employees object array
+
+    // push to employees array Manager object returned from inquireManager function
+
+    // push to employees array Engineer-Intern objects from inquireEmployees function
+
+    // pass employees object array to render function and return an html block
+
+    // pass html block to createTeamHtml function to write output/team.html file
+
+}
+
+// TODO: inquireManager function
+
+// TODO: inquireEmployees function​
+
+// TODO: createTeamHtml function
+
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 ​

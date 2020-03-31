@@ -15,27 +15,128 @@ const employees = [];
 
 // init function
 function init(){
-            
-    // push to employees array Manager object returned from inquireManager function
-    inquireManager();
-   
-    // push to employees array Engineer-Intern objects from inquireEmployees function
-    // TODO: employees.push(inquireEmployees());
-
-    // pass employees object array to render function and return an html block
-    // TODO: const html = render(employees);
 
     // pass html block to createTeamHtml function to write output/team.html file
     // TODO: createTeamHtml(html);
 
+    promiseManger
+    .then((emp) => {
+        
+        return employees;
+
+    })
+    .then((emp) => {
+        
+        return new Promise((resolve, reject) => {
+
+            // inquirer call to select type of employee to enter
+            inquirer
+                .prompt([
+                    {
+                        type: "list",
+                        message: "Select what kind of employee to add, or select done",
+                        choices: ["Engineer", "Intern"],
+                        name: "employeeType"
+                    }
+                ])
+                // inquire properties of selected employee type
+                .then(function({employeeType}){
+
+                    resolve(employeeType);
+        
+                })
+        
+        })
+
+    })
+    .then((employeeType) => {
+        
+        switch (employeeType){
+
+            case "Engineer":
+
+                return new Promise((resolve, reject) => {
+
+                    inquirer
+                        .prompt([
+                            {
+                                type: "input",
+                                message: `Enter the name of the ${employeeType}`,
+                                name: "name"
+                            },
+                            {
+                                type: "input",
+                                message: `Enter the employee # of the ${employeeType}`,
+                                name: "employeeNumber"
+                            },
+                            {
+                                type: "input",
+                                message: `Enter the email of the ${employeeType}`,
+                                name: "email"
+                            },
+                            {
+                                type: "input",
+                                message: `Enter the GitHub username of the ${employeeType}`,
+                                name: "github"
+                            },
+                        ])
+                        .then(function({name, email, employeeNumber, github}){
+
+                            employees.push(new Engineer(name, email, employeeNumber, github));
+                            resolve(employees);
+
+                        })
+                
+                })
+
+            break;
+
+            case "Intern":
+
+                return new Promise((resolve, reject) => {
+
+                    inquirer
+                        .prompt([
+                            {
+                                type: "input",
+                                message: `Enter the name of the ${employeeType}`,
+                                name: "name"
+                            },
+                            {
+                                type: "input",
+                                message: `Enter the employee # of the ${employeeType}`,
+                                name: "employeeNumber"
+                            },
+                            {
+                                type: "input",
+                                message: `Enter the email of the ${employeeType}`,
+                                name: "email"
+                            },
+                            {
+                                type: "input",
+                                message: `Enter the school of the ${employeeType}`,
+                                name: "school"
+                            },
+                        ])
+                        .then(function({name, email, employeeNumber, school}){
+
+                            employees.push(new Intern(name, email, employeeNumber, school));
+                            resolve(employees);
+
+                        })
+                
+                })
+
+            break;
+
+        }
+
+    })
+    
+
 }
 
-// inquireManager function
-function inquireManager(){
-
-    // create blank manager object
-    let manager;
-
+let promiseManger = new Promise((resolve, reject) => {
     // inquirer call
     inquirer
         // prompt for manager
@@ -66,25 +167,14 @@ function inquireManager(){
         // then callback promise function
         .then(function({name, employeeNumber, email, officeNumber}){
 
-            // construct manager object
-            manager = new Manager(name, employeeNumber, email, officeNumber);
-
-            // return manager object
-            employees.push(manager);
+            // push manager object to employees array
+            employees.push(new Manager(name, employeeNumber, email, officeNumber));
+            resolve(employees);
             
         })
-        .then(function(){
-            inquireEmployees();
-        })
-        .catch(error => console.log(error));
-            
-}
 
-// inquireEmployees function​
-function inquireEmployees(){
+});
 
-    return;
-}
 
 // TODO: createTeamHtml function
 function createTeamHtml(html){

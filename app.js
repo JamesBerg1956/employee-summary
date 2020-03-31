@@ -132,7 +132,16 @@ function init(){
         }
 
     })
-    
+    .then((emp) => {
+        console.log("render: ");
+        console.log(employees);
+
+        // pass employees object array to render function and return an html block
+        const html = render(employees);
+        console.log("html: ");
+        console.log(html);
+
+    })
 
 }
 

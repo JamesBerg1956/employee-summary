@@ -28,6 +28,13 @@ This project queries the user for information about employees and automatically 
 2. Install npm packages
                         
 `npm install`
+
+3. Run using node
+
+`node app.js`
+
+![employee-summary.gif](./Assets/employee-summary.gif)
+
 ## Usage
                         
 This project is useful for creating a quick overview of newly formed teams

@@ -102,9 +102,12 @@ async function init(){
         var e = await createEmployee(i);
         employees = employees.concat(e);
         i++;
-        console.log(employees);
     }
+    
+    const html = render(employees);
 
 }
+
+
 
 init();
